@@ -44,7 +44,6 @@ static pthread_mutex_t    lock = PTHREAD_MUTEX_INITIALIZER;
 static pthread_t          thread;
 static uint32_t           thread_started = 0;
 static pthread_barrier_t  task_pass_barrier;
-static Atom               freshwrapper_x11et_cmd_atom;
 static Atom               xembed_atom;
 static Atom               xembed_info_atom;
 static int                task_pipe[2];
@@ -321,7 +320,7 @@ void
 x11et_start_thread(void)
 {
     dpy = XOpenDisplay(NULL);
-    freshwrapper_x11et_cmd_atom = XInternAtom(dpy, "FRESHWRAPPER_X11ET_CMD", False);
+
     xembed_atom =                 XInternAtom(dpy, "_XEMBED", False);
     xembed_info_atom =            XInternAtom(dpy, "_XEMBED_INFO", False);
 
