@@ -31,6 +31,8 @@
 #include "reverse_constant.h"
 #include "trace.h"
 
+static Window XCreateWindow_proxy(Display *display, Window parent, int x, int y, unsigned int width, unsigned int height, unsigned int border_width, int depth, unsigned int class, Visual *visual, unsigned long valuemask, XSetWindowAttributes *attributes) { return XCreateWindow(display, parent, x, y, width, height, border_width, depth, class, visual, valuemask & ~(CWBackingStore), attributes); }
+#define XCreateWindow XCreateWindow_proxy
 
 static GHashTable        *ht = NULL;  // Window -> struct ht_entry_s
 static GHashTable        *socket_ht = NULL; // plug_wnd -> socket wnd
